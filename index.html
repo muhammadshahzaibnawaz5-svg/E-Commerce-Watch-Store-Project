@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HANDTIME</title>
+  <!-- Meta tags -->
+  <meta name="title" content="HANDTIME Watches">
+  <meta name="description"
+    content="We providing best royal, and luxurious watches at very discount prices. Men, Women brands are available at HANDTIME store. Smart, Digital , and all types of watches are available here. Quick and better responses and fast home delivery.">
+  <meta name="keywords" content="Watches, Royal, Luxurious">
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <meta name="author" content="Muhammad Shahzaib">
+
+  <meta property="og:title" content=HANDTIME Watches>
+  <meta property="og:site_name" content=HANDTIME Watches>
+  <meta property="og:url" content=HANDTIME.com>
+  <meta property="og:description" content=We providing best royal, and luxurious watches at very discount prices. Men,
+    Women brands are available at HANDTIME store. Smart, Digital , and all types of watches are available here. Quick
+    and better responses and fast home delivery.>
+  <meta property="og:type" content=product>
+  <meta property="og:image" content=https://blog-cdn.el.olx.com.pk/wp-content/uploads/2023/08/23124502/watches.png>
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/fonts/fontawesome-webfont.ttf">
+  <link rel="stylesheet" href="/src/style.css">
+  <link rel="shortcut icon" href="/src/fevicon/fevicon.png" type="image/x-icon">
+</head>
+
+<body class="bg-gray-100">
+
+  <header class="w-full bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
+
+      <!-- Logo -->
+      <h1 class="text-2xl font-bold tracking-tighter text-black hover:text-violet-700 transition-colors cursor-pointer">
+        HANDTIME
+      </h1>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-x-8 text-sm font-medium text-gray-700">
+
+        <a href="index.html" class="hover:text-violet-700 transition-colors px-4 py-2 rounded-lg hover:bg-violet-50">
+          HOME
+        </a>
+
+        <a href="/src/Pages/Products.html"
+          class="hover:text-violet-700 transition-colors px-4 py-2 rounded-lg hover:bg-violet-50">
+          PRODUCTS
+        </a>
+
+        <a href="/src/Pages/Contact-Us.html"
+          class="hover:text-violet-700 transition-colors px-4 py-2 rounded-lg hover:bg-violet-50">
+          CONTACT US
+        </a>
+      </nav>
+
+      <!-- Right Side Icons -->
+      <div class="flex items-center gap-5 text-gray-700">
+
+        <!-- User Icon: sign-in button (shown when logged out) -->
+        <button id="btn-signin" onclick="goToSignIn()"
+          class="hover:text-violet-700 transition-colors p-2 rounded-full hover:bg-violet-50 cursor-pointer">
+          <i class="fa-solid fa-user text-xl"></i>
+        </button>
+
+        <!-- User Badge: shown when logged in -->
+        <div id="user-badge"
+          class="hidden items-center gap-2 px-3 py-1.5 bg-violet-50 rounded-2xl cursor-pointer group relative"
+          onclick="toggleUserMenu()">
+          <i class="fa-solid fa-circle-user text-xl text-violet-600"></i>
+          <span id="user-badge-name" class="text-sm font-semibold text-violet-700"></span>
+          <i class="fa-solid fa-chevron-down text-xs text-violet-400"></i>
+          <!-- Dropdown -->
+          <div id="user-dropdown"
+            class="hidden absolute top-full right-0 mt-2 bg-white border border-gray-100 rounded-2xl shadow-xl py-2 w-44 z-50">
+            <div class="px-4 py-2 border-b border-gray-100">
+              <p id="dropdown-name" class="text-sm font-semibold text-gray-800"></p>
+              <p id="dropdown-email" class="text-xs text-gray-400 truncate"></p>
+            </div>
+            <button onclick="signOut(event)"
+              class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition-colors">
+              <i class="fa-solid fa-right-from-bracket mr-2"></i>Sign Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Cart Icon -->
+        <button
+          class="hover:text-violet-700 transition-colors p-2 rounded-full hover:bg-violet-50 relative cursor-pointer">
+          <i class="fa-solid fa-cart-shopping text-xl"></i>
+          <!-- Optional: Cart count badge -->
+          <!-- <span class="absolute -top-1 -right-1 bg-violet-600 text-white text-[10px] font-medium w-5 h-5 flex items-center justify-center rounded-full">3</span> -->
+        </button>
+
+        <!-- Hamburger Button -->
+        <button id="menuBtn"
+          class="md:hidden text-2xl focus:outline-none p-2 rounded-full hover:bg-violet-50 transition-colors">
+          <i id="menuIcon" class="fa-solid fa-bars"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+      class="hidden md:hidden bg-white border-t border-gray-100 py-4 px-6 text-sm font-medium text-gray-700 shadow-inner">
+
+      <div class="flex flex-col gap-2">
+        <a href="index.html" class="px-4 py-3 hover:bg-violet-50 rounded-xl transition-colors">
+          HOME
+        </a>
+        <a href="/src/Pages/Products.html" class="px-4 py-3 hover:bg-violet-50 rounded-xl transition-colors">
+          PRODUCTS
+        </a>
+        <a href="/src/Pages/Contact-Us.html" class="px-4 py-3 hover:bg-violet-50 rounded-xl transition-colors">
+          CONTACT US
+        </a>
+      </div>
+
+
+    </div>
+  </header>
+
+  <!-- Body section -->
+  <main>
+    <!-- Hero section -->
+    <section class="relative w-full h-125">
+
+      <!-- Background Image -->
+      <img src="/src/Components/images/slider-bg.jpg" class="absolute inset-0 w-full h-full object-cover"
+        alt="Hero banner">
+      <!-- Overlay Content -->
+      <div class="absolute inset-0 flex flex-col justify-center pl-32 pr-80">
+        <h1 class="text-4xl text-white font-bold mb-4 font-[Brigila]">Stylish Watches</h1>
+        <p class="text-white mb-4 text-3xl font-[DH]">
+          We providing Royal and luxurios watches at very minimal costs.<br>
+          The watches that you never seen before. Globle collection.
+        </p>
+        <a href="/src/Pages/Contact-Us.html"><button
+            class="text-white bg-green-400 hover:bg-green-600 pt-3 pb-3 pl-8 pr-8 rounded-xl cursor-pointer w-fit">
+            Contact Us
+          </button>
+        </a>
+      </div>
+    </section>
+    <!-- Feature section -->
+    <section class="w-full py-12">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <!-- Item 1 -->
+        <div class="flex flex-col items-center">
+          <img src="/src/Components/images/feature-1.png" alt="feature1">
+          <h3 class="font-bold text-lg mb-2">FAST DELIVERY</h3>
+          <p class="text-sm text-gray-600">
+            Reliable and efficient delivery ensures your order reaches you quickly and safely, without unnecessary
+            delays.
+          </p>
+        </div>
+        <!-- Item 2 -->
+        <div class="flex flex-col items-center">
+          <img src="/src/Components/images/feature-2.png" alt="feature2">
+          <h3 class="font-bold text-lg mb-2">FREE SHIPPING</h3>
+          <p class="text-sm text-gray-600">
+            Enjoy seamless shopping with zero delivery charges, providing added value on every purchase you make.
+          </p>
+        </div>
+        <!-- Item 3 -->
+        <div class="flex flex-col items-center">
+          <img src="/src/Components/images/feature-3.png" alt="feature3">
+          <h3 class="font-bold text-lg mb-2">BEST QUALITY</h3>
+          <p class="text-sm text-gray-600">
+            Each product is crafted with premium materials and strict quality standards to ensure durability and
+            long-term performance.
+          </p>
+        </div>
+        <!-- Item 4 -->
+        <div class="flex flex-col items-center">
+          <img src="/src/Components/images/feature-4.png" alt="feature4">
+          <h3 class="font-bold text-lg mb-2">24X7 CUSTOMER SUPPORT</h3>
+          <p class="text-sm text-gray-600">
+            Our dedicated support team is available around the clock to assist you with any inquiries or concerns,
+            anytime you need.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product section -->
+
+    <section>
+      <div class="bg-gray-200 py-12">
+
+        <!-- Stylish Title -->
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 relative inline-block font-[Brigila]">
+            Top Sale Watches
+            <span class="block w-16 h-1 bg-violet-600 mx-auto mt-2 rounded-full"></span>
+          </h2>
+        </div>
+
+        <!-- Cards Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-12">
+
+          <!-- Card -->
+          <div class="bg-white p-6 rounded-md shadow-sm text-center hover:shadow-xl transition cursor-pointer">
+            <img class="h-40 mx-auto mb-6" src="/src/Components/images/w1.png" alt="watch1">
+
+            <div class="flex justify-between items-center">
+              <div>
+                <h6 class="text-sm font-semibold">Men's Watch</h6>
+                <h5 class="text-lg font-bold">$ 300</h5>
+              </div>
+
+              <div class="text-right">
+                <h6 class="text-sm font-semibold mb-1 flex justify-center">Like</h6>
+                <div class="text-sm">
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                </div>
+              </div>
+            </div>
+
+            <button class="mt-6 bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 cursor-pointer">
+              Add To Cart
+            </button>
+          </div>
+
+          <!-- Card -->
+          <div class="bg-white p-6 rounded-md shadow-sm text-center hover:shadow-xl transition cursor-pointer">
+            <img class="h-40 mx-auto mb-6" src="/src/Components/images/w2.png" alt="watch2">
+
+            <div class="flex justify-between items-center">
+              <div>
+                <h6 class="text-sm font-semibold">Men's Watch</h6>
+                <h5 class="text-lg font-bold">$ 300</h5>
+              </div>
+
+              <div class="text-right">
+                <h6 class="text-sm font-semibold mb-1 flex justify-center">Like</h6>
+                <div class="text-sm">
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                </div>
+              </div>
+            </div>
+
+            <button class="mt-6 bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 cursor-pointer">
+              Add To Cart
+            </button>
+          </div>
+
+          <!-- Card -->
+          <div class="bg-white p-6 rounded-md shadow-sm text-center hover:shadow-xl transition cursor-pointer">
+            <img class="h-40 mx-auto mb-6" src="/src/Components/images/w3.png" alt="watch3">
+
+            <div class="flex justify-between items-center">
+              <div>
+                <h6 class="text-sm font-semibold">Men's Watch</h6>
+                <h5 class="text-lg font-bold">$ 300</h5>
+              </div>
+
+              <div class="text-right">
+                <h6 class="text-sm font-semibold mb-1 flex justify-center">Like</h6>
+                <div class="text-sm">
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                </div>
+              </div>
+            </div>
+
+            <button class="mt-6 bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 cursor-pointer">
+              Add To Cart
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- 2nd list of products -->
+      <div class="bg-gray-200 py-12">
+
+        <!--  Title -->
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 relative inline-block font-[Brigila]">
+            Feature Watches
+            <span class="block w-16 h-1 bg-violet-600 mx-auto mt-2 rounded-full"></span>
+          </h2>
+        </div>
+
+        <!-- Cards Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-12">
+
+          <!-- Card -->
+          <div class="bg-white p-6 rounded-md shadow-sm text-center hover:shadow-xl transition cursor-pointer">
+            <img class="h-40 mx-auto mb-6" src="/src/Components/images/w4.png" alt="watch1">
+
+            <div class="flex justify-between items-center">
+              <div>
+                <h6 class="text-sm font-semibold">Men's Watch</h6>
+                <h5 class="text-lg font-bold">$ 300</h5>
+              </div>
+
+              <div class="text-right">
+                <h6 class="text-sm font-semibold mb-1 flex justify-center">Like</h6>
+                <div class="text-sm">
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                </div>
+              </div>
+            </div>
+
+            <button class="mt-6 bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 cursor-pointer">
+              Add To Cart
+            </button>
+          </div>
+
+          <!-- Card -->
+          <div class="bg-white p-6 rounded-md shadow-sm text-center hover:shadow-xl transition cursor-pointer">
+            <img class="h-40 mx-auto mb-6" src="/src/Components/images/w5.png" alt="watch2">
+
+            <div class="flex justify-between items-center">
+              <div>
+                <h6 class="text-sm font-semibold">Men's Watch</h6>
+                <h5 class="text-lg font-bold">$ 300</h5>
+              </div>
+
+              <div class="text-right">
+                <h6 class="text-sm font-semibold mb-1 flex justify-center">Like</h6>
+                <div class="text-sm">
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                </div>
+              </div>
+            </div>
+
+            <button class="mt-6 bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 cursor-pointer">
+              Add To Cart
+            </button>
+          </div>
+
+          <!-- Card -->
+          <div class="bg-white p-6 rounded-md shadow-sm text-center hover:shadow-xl transition cursor-pointer">
+            <img class="h-40 mx-auto mb-6" src="/src/Components/images/w6.png" alt="watch3">
+
+            <div class="flex justify-between items-center">
+              <div>
+                <h6 class="text-sm font-semibold">Men's Watch</h6>
+                <h5 class="text-lg font-bold">$ 300</h5>
+              </div>
+
+              <div class="text-right">
+                <h6 class="text-sm font-semibold mb-1 flex justify-center">Like</h6>
+                <div class="text-sm">
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                </div>
+              </div>
+            </div>
+
+            <button class="mt-6 bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 cursor-pointer">
+              Add To Cart
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- 3rd Product list -->
+
+      <div class="bg-gray-200 py-12">
+
+        <!-- Title -->
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 relative inline-block font-[Brigila]">
+            New Arrivals
+            <span class="block w-16 h-1 bg-violet-600 mx-auto mt-2 rounded-full"></span>
+          </h2>
+        </div>
+
+        <!-- Cards Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-12">
+
+          <!-- Card -->
+          <div class="bg-white p-6 rounded-md shadow-sm text-center hover:shadow-xl transition cursor-pointer">
+            <img class="h-40 mx-auto mb-6" src="/src/Components/images/w7.png" alt="watch1">
+
+            <div class="flex justify-between items-center">
+              <div>
+                <h6 class="text-sm font-semibold">Men's Watch</h6>
+                <h5 class="text-lg font-bold">$ 300</h5>
+              </div>
+
+              <div class="text-right">
+                <h6 class="text-sm font-semibold mb-1 flex justify-center">Like</h6>
+                <div class="text-sm">
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                </div>
+              </div>
+            </div>
+
+            <button class="mt-6 bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 cursor-pointer">
+              Add To Cart
+            </button>
+          </div>
+
+          <!-- Card -->
+          <div class="bg-white p-6 rounded-md shadow-sm text-center hover:shadow-xl transition cursor-pointer">
+            <img class="h-40 mx-auto mb-6" src="/src/Components/images/w8.png" alt="watch2">
+
+            <div class="flex justify-between items-center">
+              <div>
+                <h6 class="text-sm font-semibold">Men's Watch</h6>
+                <h5 class="text-lg font-bold">$ 300</h5>
+              </div>
+
+              <div class="text-right">
+                <h6 class="text-sm font-semibold mb-1 flex justify-center">Like</h6>
+                <div class="text-sm">
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                </div>
+              </div>
+            </div>
+
+            <button class="mt-6 bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 cursor-pointer">
+              Add To Cart
+            </button>
+          </div>
+
+          <!-- Card -->
+          <div class="bg-white p-6 rounded-md shadow-sm text-center hover:shadow-xl transition cursor-pointer">
+            <img class="h-40 mx-auto mb-6" src="/src/Components/images/w9.png" alt="watch3">
+
+            <div class="flex justify-between items-center">
+              <div>
+                <h6 class="text-sm font-semibold">Men's Watch</h6>
+                <h5 class="text-lg font-bold">$ 300</h5>
+              </div>
+
+              <div class="text-right">
+                <h6 class="text-sm font-semibold mb-1 flex justify-center">Like</h6>
+                <div class="text-sm">
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                  <i class="fa fa-star text-orange-600"></i>
+                </div>
+              </div>
+            </div>
+
+            <button class="mt-6 bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 cursor-pointer">
+              Add To Cart
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Sign-in form section -->
+
+    <section id="home-signin-section" class="w-full bg-gray-200 py-10 border-t border-b border-gray-300">
+
+      <div class="max-w-3xl mx-auto text-center">
+
+        <!-- Heading -->
+        <h2 class="text-xl md:text-2xl font-semibold text-black mb-4">
+          See personalized recommendations
+        </h2>
+
+        <!-- Button -->
+        <a href="/src/Pages/Sign-in.html"><button id="bottom-signin-btn"
+            class="bg-violet-700 hover:bg-violet-900 text-white font-semibold px-8 py-2 rounded-full transition cursor-pointer">
+            Sign in
+          </button>
+        </a>
+
+        <!-- Sub text -->
+        <p class="text-sm text-gray-700 mt-3">
+          New Customer?
+          <a href="/src/Pages/Sign-in.html" class="text-blue-600 hover:underline">Start here</a>
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="bg-[#232F3E] text-gray-300 text-sm">
+
+      <!-- Back to top -->
+      <div class="text-center py-4 border-b border-gray-600 hover:bg-[#37475A] cursor-pointer">
+        <a href="index.html" class="text-white">Back to Top</a>
+      </div>
+
+      <!-- Main footer links (Flex version) -->
+      <div class="max-w-7xl mx-auto px-6 py-10 flex flex-wrap gap-8">
+
+        <!-- Column 1 -->
+        <div class="w-full md:w-[48%] lg:w-[23%]">
+          <h3 class="text-white font-semibold mb-3">Get to Know Us</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">Blog</a></li>
+            <li><a href="#" class="hover:underline">About Us</a></li>
+            <li><a href="#" class="hover:underline">Investors Relations</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="w-full md:w-[48%] lg:w-[23%]">
+          <h3 class="text-white font-semibold mb-3">Buy feature products</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">Buy products</a></li>
+            <li><a href="#" class="hover:underline">Sell Apps on Amazon</a></li>
+            <li><a href="#" class="hover:underline">Become an Affiliate</a></li>
+            <li><a href="#" class="hover:underline">Royal Products</a></li>
+            <li><a href="#" class="hover:underline">Self-Publish With Us</a></li>
+            <li><a href="#" class="hover:underline">See More</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="w-full md:w-[48%] lg:w-[23%]">
+          <h3 class="text-white font-semibold mb-3">Payment Products</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">Business Card</a></li>
+            <li><a href="#" class="hover:underline">Shop With Points</a></li>
+            <li><a href="#" class="hover:underline">Reload Your Balance</a></li>
+            <li><a href="#" class="hover:underline">Currency Converter</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4 -->
+        <div class="w-full md:w-[48%] lg:w-[23%]">
+          <h3 class="text-white font-semibold mb-3">Let Us Help You</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">Your Accounts</a></li>
+            <li><a href="#" class="hover:underline">Your Orders</a></li>
+            <li><a href="#" class="hover:underline">Shipping Rates and Policies</a></li>
+            <li><a href="#" class="hover:underline">Returns and Replacements</a></li>
+            <li><a href="#" class="hover:underline">Manage your Content and Devices</a></li>
+            <li><a href="#" class="hover:underline">Help</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom -->
+      <div class="bg-[#131A22] text-center text-xs text-gray-400 py-4 space-y-2">
+        <div class="space-x-4">
+          <a href="#" class="hover:underline">Conditions of Use</a>
+          <a href="#" class="hover:underline">Privacy Notice</a>
+          <a href="#" class="hover:underline">Your Ads Privacy Choices</a>
+        </div>
+        <p>© 1996-2026, HANDTIME.com, Inc. or its affiliates</p>
+      </div>
+
+    </footer>
+  </main>
+  <script type="module" src="/src/index.js"></script>
+</body>
+
+</html>

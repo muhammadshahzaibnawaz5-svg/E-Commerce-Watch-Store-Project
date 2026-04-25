@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+
+@font-face {
+    font-family: Catherine;
+    src: url("/src/fonts/belgium-catherine/BelgiumCatherine-Slant.ttf");
+}
+
+@font-face {
+    font-family: Brigila;
+    src: url("/src/fonts/brigila-demo/Brigila-Demo.ttf");
+}
+
+@font-face {
+    font-family: DH;
+    src: url("/src/fonts/digital-homework/Digital\ Homework.ttf");
+}

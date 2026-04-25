@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tags -->
+<meta name="title" content="HANDTIME Watches">
+<meta name="description" content="We providing best royal, and luxurious watches at very discount prices. Men, Women brands are available at HANDTIME store. Smart, Digital , and all types of watches are available here. Quick and better responses and fast home delivery.">
+<meta name="keywords" content="Watches, Royal, Luxurious">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+<meta name="revisit-after" content="7 days">
+<meta name="author" content="Muhammad Shahzaib">
+
+<meta property="og:title" content=HANDTIME Watches>
+<meta property="og:site_name" content=HANDTIME Watches>
+<meta property="og:url" content=HANDTIME.com>
+<meta property="og:description" content=We providing best royal, and luxurious watches at very discount prices. Men, Women brands are available at HANDTIME store. Smart, Digital , and all types of watches are available here. Quick and better responses and fast home delivery.>
+<meta property="og:type" content=product>
+<meta property="og:image" content=https://blog-cdn.el.olx.com.pk/wp-content/uploads/2023/08/23124502/watches.png>
+
+    <title>HANDTIME</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/fonts/fontawesome-webfont.ttf">
+  <link rel="stylesheet" href="/src/style.css">
+  <link rel="shortcut icon" href="/src/fevicon/fevicon.png" type="image/x-icon">
+</head>
+<body class="bg-gray-100">
+
+<header class="w-full bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
+
+    <!-- Logo -->
+    <h1 class="text-2xl font-bold tracking-tighter text-black hover:text-violet-700 transition-colors cursor-pointer">
+      HANDTIME
+    </h1>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-x-8 text-sm font-medium text-gray-700">
+
+      <a href="index.html" 
+         class="hover:text-violet-700 transition-colors px-4 py-2 rounded-lg hover:bg-violet-50">
+        HOME
+      </a>
+
+      <a href="/src/Pages/Products.html" 
+         class="hover:text-violet-700 transition-colors px-4 py-2 rounded-lg hover:bg-violet-50">
+        PRODUCTS
+      </a>
+
+      <a href="/src/Pages/Contact-Us.html" 
+         class="hover:text-violet-700 transition-colors px-4 py-2 rounded-lg hover:bg-violet-50">
+        CONTACT US
+      </a>
+
+    </nav>
+
+    <!-- Right Side Icons -->
+    <div class="flex items-center gap-5 text-gray-700">
+
+      <!-- User Icon: sign-in button (shown when logged out) -->
+      <button id="btn-signin"
+              onclick="goToSignIn()"
+              class="hover:text-violet-700 transition-colors p-2 rounded-full hover:bg-violet-50 cursor-pointer">
+        <i class="fa-solid fa-user text-xl"></i>
+      </button>
+
+      <!-- User Badge: shown when logged in -->
+      <div id="user-badge"
+           class="hidden items-center gap-2 px-3 py-1.5 bg-violet-50 rounded-2xl cursor-pointer group relative"
+           onclick="toggleUserMenu()">
+        <i class="fa-solid fa-circle-user text-xl text-violet-600"></i>
+        <span id="user-badge-name" class="text-sm font-semibold text-violet-700"></span>
+        <i class="fa-solid fa-chevron-down text-xs text-violet-400"></i>
+        <!-- Dropdown -->
+        <div id="user-dropdown"
+             class="hidden absolute top-full right-0 mt-2 bg-white border border-gray-100 rounded-2xl shadow-xl py-2 w-44 z-50">
+          <div class="px-4 py-2 border-b border-gray-100">
+            <p id="dropdown-name" class="text-sm font-semibold text-gray-800"></p>
+            <p id="dropdown-email" class="text-xs text-gray-400 truncate"></p>
+          </div>
+          <button onclick="signOut(event)"
+                  class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition-colors">
+            <i class="fa-solid fa-right-from-bracket mr-2"></i>Sign Out
+          </button>
+        </div>
+      </div>
+
+      <!-- Cart Icon -->
+      <button class="hover:text-violet-700 transition-colors p-2 rounded-full hover:bg-violet-50 relative cursor-pointer">
+        <i class="fa-solid fa-cart-shopping text-xl"></i>
+        <!-- Optional: Cart count badge -->
+        <!-- <span class="absolute -top-1 -right-1 bg-violet-600 text-white text-[10px] font-medium w-5 h-5 flex items-center justify-center rounded-full">3</span> -->
+      </button>
+
+      <!-- Hamburger Button -->
+      <button id="menuBtn" 
+              class="md:hidden text-2xl focus:outline-none p-2 rounded-full hover:bg-violet-50 transition-colors">
+        <i id="menuIcon" class="fa-solid fa-bars"></i>
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" 
+       class="hidden md:hidden bg-white border-t border-gray-100 py-4 px-6 text-sm font-medium text-gray-700 shadow-inner">
+    
+    <div class="flex flex-col gap-2">
+      <a href="index.html" 
+         class="px-4 py-3 hover:bg-violet-50 rounded-xl transition-colors">
+        HOME
+      </a>
+      <a href="/src/Pages/Products.html" 
+         class="px-4 py-3 hover:bg-violet-50 rounded-xl transition-colors">
+        PRODUCTS
+      </a>
+      <a href="/src/Pages/Contact-Us.html" 
+         class="px-4 py-3 hover:bg-violet-50 rounded-xl transition-colors">
+        CONTACT US
+      </a>
+    </div>
+
+    
+  </div>
+</header>
+<main>
+
+<section class="bg-gray-50 py-12">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold text-violet-800">Contact Us</h1>
+      <p class="text-gray-500 mt-2">Have questions about our watches? We’re here to help.</p>
+    </div>
+
+    <!-- Content Flex -->
+    <div class="flex flex-col lg:flex-row gap-10">
+
+      <!-- Left: Contact Info -->
+      <div class="space-y-6 flex-1">
+        
+        <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl cursor-pointer">
+          <h3 class="text-lg font-semibold text-violet-800 mb-2">Visit Us</h3>
+          <p class="text-gray-600">Shahdara, Lahore, Pakistan</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl cursor-pointer">
+          <h3 class="text-lg font-semibold text-violet-800 mb-2">Call Us</h3>
+          <p class="text-gray-600">+92 300 1234567</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl cursor-pointer">
+          <h3 class="text-lg font-semibold text-violet-800 mb-2">Email</h3>
+          <p class="text-gray-600">support@watchstore.com</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl cursor-pointer">
+          <h3 class="text-lg font-semibold text-violet-800 mb-2">Working Hours</h3>
+          <p class="text-gray-600">Mon - Sat: 10:00 AM - 8:00 PM</p>
+        </div>
+
+      </div>
+
+      <!-- Right: Contact Form -->
+      <div class="bg-white p-8 rounded-xl shadow-2xl flex-1">
+        <h2 class="text-xl font-semibold text-violet-800 mb-6">Send Message</h2>
+
+        <form class="space-y-4">
+
+          <div>
+            <label class="block text-sm text-gray-600 mb-1">Full Name</label>
+            <input type="text" placeholder="Enter your name"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-violet-600 outline-none">
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-600 mb-1">Email</label>
+            <input type="email" placeholder="Enter your email"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-violet-600 outline-none">
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-600 mb-1">Message</label>
+            <textarea rows="4" placeholder="Write your message"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-violet-600 outline-none"></textarea>
+          </div>
+
+          <button class="w-full bg-linear-to-r from-violet-500 to-blue-500 text-white py-3 rounded-xl font-semibold cursor-pointer 
+transition-all duration-300 
+hover:from-violet-600 hover:to-blue-600 
+hover:shadow-lg hover:-translate-y-0.5 
+active:scale-95">
+  Send Message
+</button>
+
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Map (Optional) -->
+    <div class="mt-12">
+      <iframe 
+        class="w-full h-72 rounded-xl border"
+        src="https://maps.google.com/maps?q=lahore&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        loading="lazy">
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+
+<footer class="bg-[#232F3E] text-gray-300 text-sm">
+  
+  <!-- Back to top -->
+  <div class="text-center py-4 border-b border-gray-600 hover:bg-[#37475A] cursor-pointer">
+    <a href="/src/Pages/Contact-Us.html" class="text-white">Back to Top</a>
+  </div>
+
+  <!-- Main footer links (Flex version) -->
+  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-wrap gap-8">
+
+    <!-- Column 1 -->
+    <div class="w-full md:w-[48%] lg:w-[23%]">
+      <h3 class="text-white font-semibold mb-3">Get to Know Us</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">Blog</a></li>
+        <li><a href="#" class="hover:underline">About Us</a></li>
+        <li><a href="#" class="hover:underline">Investors Relations</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="w-full md:w-[48%] lg:w-[23%]">
+      <h3 class="text-white font-semibold mb-3">Buy feature products</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">Buy products</a></li>
+        <li><a href="#" class="hover:underline">Sell Apps on Amazon</a></li>
+        <li><a href="#" class="hover:underline">Become an Affiliate</a></li>
+        <li><a href="#" class="hover:underline">Royal Products</a></li>
+        <li><a href="#" class="hover:underline">Self-Publish With Us</a></li>
+        <li><a href="#" class="hover:underline">See More</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="w-full md:w-[48%] lg:w-[23%]">
+      <h3 class="text-white font-semibold mb-3">Payment Products</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">Business Card</a></li>
+        <li><a href="#" class="hover:underline">Shop With Points</a></li>
+        <li><a href="#" class="hover:underline">Reload Your Balance</a></li>
+        <li><a href="#" class="hover:underline">Currency Converter</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="w-full md:w-[48%] lg:w-[23%]">
+      <h3 class="text-white font-semibold mb-3">Let Us Help You</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">Your Accounts</a></li>
+        <li><a href="#" class="hover:underline">Your Orders</a></li>
+        <li><a href="#" class="hover:underline">Shipping Rates and Policies</a></li>
+        <li><a href="#" class="hover:underline">Returns and Replacements</a></li>
+        <li><a href="#" class="hover:underline">Manage your Content and Devices</a></li>
+        <li><a href="#" class="hover:underline">Help</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Bottom -->
+  <div class="bg-[#131A22] text-center text-xs text-gray-400 py-4 space-y-2">
+    <div class="space-x-4">
+      <a href="#" class="hover:underline">Conditions of Use</a>
+      <a href="#" class="hover:underline">Privacy Notice</a>
+      <a href="#" class="hover:underline">Your Ads Privacy Choices</a>
+    </div>
+    <p>© 1996-2026, HANDTIME.com, Inc. or its affiliates</p>
+  </div>
+</footer>
+</main>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

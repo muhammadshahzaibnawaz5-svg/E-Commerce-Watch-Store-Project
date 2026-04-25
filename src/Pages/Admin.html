@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tags -->
+<meta name="title" content="HANDTIME Watches">
+<meta name="description" content="We providing best royal, and luxurious watches at very discount prices. Men, Women brands are available at HANDTIME store. Smart, Digital , and all types of watches are available here. Quick and better responses and fast home delivery.">
+<meta name="keywords" content="Watches, Royal, Luxurious">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+<meta name="revisit-after" content="7 days">
+<meta name="author" content="Muhammad Shahzaib">
+
+<meta property="og:title" content=HANDTIME Watches>
+<meta property="og:site_name" content=HANDTIME Watches>
+<meta property="og:url" content=HANDTIME.com>
+<meta property="og:description" content=We providing best royal, and luxurious watches at very discount prices. Men, Women brands are available at HANDTIME store. Smart, Digital , and all types of watches are available here. Quick and better responses and fast home delivery.>
+<meta property="og:type" content=product>
+<meta property="og:image" content=https://blog-cdn.el.olx.com.pk/wp-content/uploads/2023/08/23124502/watches.png>
+
+    <title>HANDTIME - Admin Dashboard</title>
+    <!-- font awesome style (same as your other pages) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../fonts/fontawesome-webfont.ttf">
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="shortcut icon" href="/src/fevicon/fevicon.png" type="image/x-icon">
+    <style>
+        
+        .admin-sidebar {
+            background: white;
+            border-right: 1px solid #e5e7eb;
+        }
+        .panel {
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .stat-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        /* ===== LOGIN OVERLAY ===== */
+        #login-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4c1d95 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s ease;
+        }
+        #login-overlay.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .login-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
+            animation: slideUp 0.5s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.95); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .login-input {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.9rem;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+        }
+        .login-input:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124,58,237,0.12);
+        }
+        .login-input.error-field {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 4px rgba(239,68,68,0.1);
+        }
+        .login-btn {
+            width: 100%;
+            padding: 0.95rem;
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            color: white;
+            border: none;
+            border-radius: 0.9rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(109,40,217,0.45);
+        }
+        .login-btn:active { transform: translateY(0); }
+        #login-error {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-align: center;
+            animation: shake 0.35s ease;
+        }
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            20%,60%  { transform: translateX(-6px); }
+            40%,80%  { transform: translateX(6px); }
+        }
+        .pass-wrapper { position: relative; }
+        .toggle-pass {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #9ca3af;
+            font-size: 1rem;
+        }
+        .toggle-pass:hover { color: #7c3aed; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- ===== ADMIN LOGIN OVERLAY ===== -->
+<div id="login-overlay">
+  <div class="login-card">
+
+    <!-- Logo / Brand -->
+    <div class="flex flex-col items-center mb-8">
+      <div class="w-16 h-16 bg-violet-600 rounded-2xl flex items-center justify-center text-white text-3xl mb-4 shadow-lg shadow-violet-200">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Admin Access</h1>
+      <p class="text-sm text-gray-500 mt-1">HANDTIME — Eclipse Timepieces</p>
+    </div>
+
+    <!-- Error Message -->
+    <div id="login-error">
+      <i class="fa-solid fa-circle-exclamation mr-1"></i>
+      <span id="login-error-msg">Incorrect email or password.</span>
+    </div>
+
+    <!-- Email -->
+    <div class="mt-5">
+      <label class="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
+      <input id="admin-email" type="email" placeholder="E-Mail"
+             class="login-input" onkeydown="if(event.key==='Enter') attemptLogin()">
+    </div>
+
+    <!-- Password -->
+    <div class="mt-4">
+      <label class="block text-sm font-semibold text-gray-700 mb-1">Password</label>
+      <div class="pass-wrapper">
+        <input id="admin-password" type="password" placeholder="••••••••"
+               class="login-input" onkeydown="if(event.key==='Enter') attemptLogin()">
+        <i id="toggle-eye" class="toggle-pass fa-solid fa-eye"
+           onclick="togglePasswordVisibility()"></i>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <button class="login-btn mt-7" onclick="attemptLogin()">
+      <i class="fa-solid fa-right-to-bracket mr-2"></i> Sign In to Admin Panel
+    </button>
+
+    <p class="text-center text-xs text-gray-400 mt-6">Protected area · Authorised personnel only</p>
+  </div>
+</div>
+<!-- ===== END LOGIN OVERLAY ===== -->
+
+<!-- HEADER - EXACT same as your Products.html / Contact-Us.html (adjusted paths for /src/Pages/ location) -->
+<header class="w-full bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
+
+    <!-- Logo -->
+    <h1 onclick="window.location.href='../index.html'" 
+        class="text-2xl font-bold tracking-tighter text-black hover:text-violet-700 transition-colors cursor-pointer">
+      HANDTIME
+    </h1>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-x-8 text-sm font-medium text-gray-700">
+
+      <a href="../index.html" 
+         class="hover:text-violet-700 transition-colors px-4 py-2 rounded-lg hover:bg-violet-50">
+        HOME
+      </a>
+
+      <a href="Products.html" 
+         class="hover:text-violet-700 transition-colors px-4 py-2 rounded-lg hover:bg-violet-50">
+        PRODUCTS
+      </a>
+
+      <a href="Contact-Us.html" 
+         class="hover:text-violet-700 transition-colors px-4 py-2 rounded-lg hover:bg-violet-50">
+        CONTACT US
+      </a>
+
+      <a href="#" onclick="showPanel('dashboard'); return false;"
+         class="bg-violet-100 text-violet-700 px-4 py-2 rounded-lg font-semibold flex items-center gap-1">
+        <i class="fa-solid fa-shield-halved"></i> ADMIN
+      </a>
+
+    </nav>
+
+<!-- Mobile Sidebar Toggle Button -->
+      <button id="sidebarToggleBtn" 
+              class="lg:hidden text-2xl focus:outline-none p-2 rounded-full hover:bg-violet-50 transition-colors mr-2"
+              onclick="toggleMobileSidebar()">
+        <i class="fa-solid fa-bars-staggered"></i>
+      </button>
+
+      <!-- Right Side Icons -->
+      <div class="flex items-center gap-5 text-gray-700">
+
+      <!-- User Icon: sign-in button (shown when logged out) -->
+      <button id="btn-signin"
+              onclick="goToSignIn()"
+              class="hover:text-violet-700 transition-colors p-2 rounded-full hover:bg-violet-50 cursor-pointer">
+        <i class="fa-solid fa-user text-xl"></i>
+      </button>
+
+      <!-- User Badge: shown when logged in -->
+      <div id="user-badge"
+           class="hidden items-center gap-2 px-3 py-1.5 bg-violet-50 rounded-2xl cursor-pointer relative"
+           onclick="toggleUserMenu()">
+        <i class="fa-solid fa-circle-user text-xl text-violet-600"></i>
+        <span id="user-badge-name" class="text-sm font-semibold text-violet-700"></span>
+        <i class="fa-solid fa-chevron-down text-xs text-violet-400"></i>
+        <!-- Dropdown -->
+        <div id="user-dropdown"
+             class="hidden absolute top-full right-0 mt-2 bg-white border border-gray-100 rounded-2xl shadow-xl py-2 w-44 z-50">
+          <div class="px-4 py-2 border-b border-gray-100">
+            <p id="dropdown-name" class="text-sm font-semibold text-gray-800"></p>
+            <p id="dropdown-email" class="text-xs text-gray-400 truncate"></p>
+          </div>
+          <button onclick="signOut(event)"
+                  class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition-colors">
+            <i class="fa-solid fa-right-from-bracket mr-2"></i>Sign Out
+          </button>
+        </div>
+      </div>
+
+      <!-- Admin badge always shown -->
+      <div class="flex items-center gap-2 px-4 py-2 bg-violet-50 rounded-2xl">
+        <i class="fa-solid fa-user-shield text-xl text-violet-700"></i>
+        <span class="font-medium text-sm text-violet-700">Admin</span>
+      </div>
+
+      <!-- Cart Icon (kept for consistency) -->
+      <button onclick="window.location.href='../index.html'" 
+              class="hover:text-violet-700 transition-colors p-2 rounded-full hover:bg-violet-50 relative cursor-pointer">
+        <i class="fa-solid fa-cart-shopping text-xl"></i>
+      </button>
+
+      <!-- Hamburger Button -->
+      <button id="menuBtn" 
+              class="md:hidden text-2xl focus:outline-none p-2 rounded-full hover:bg-violet-50 transition-colors">
+        <i id="menuIcon" class="fa-solid fa-bars"></i>
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" 
+       class="hidden md:hidden bg-white border-t border-gray-100 py-4 px-6 text-sm font-medium text-gray-700 shadow-inner">
+    <div class="flex flex-col gap-2">
+      <a href="../index.html" class="px-4 py-3 hover:bg-violet-50 rounded-xl transition-colors">HOME</a>
+      <a href="Products.html" class="px-4 py-3 hover:bg-violet-50 rounded-xl transition-colors">PRODUCTS</a>
+      <a href="Contact-Us.html" class="px-4 py-3 hover:bg-violet-50 rounded-xl transition-colors">CONTACT US</a>
+      <a onclick="showPanel('dashboard'); document.getElementById('mobileMenu').classList.add('hidden');" 
+         class="px-4 py-3 hover:bg-violet-50 rounded-xl transition-colors flex items-center gap-2">
+        <i class="fa-solid fa-shield-halved"></i> ADMIN DASHBOARD
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="flex min-h-[calc(100vh-73px)]">
+
+  <!-- Mobile Sidebar Overlay -->
+  <div id="mobileSidebarOverlay" 
+       class="fixed inset-0 bg-black/50 z-40 hidden" 
+       onclick="toggleMobileSidebar()"></div>
+
+  <!-- SIDEBAR (matches your clean, modern design) -->
+  <aside id="adminSidebar" 
+         class="admin-sidebar w-72 flex flex-col shadow-inner fixed lg:relative inset-y-0 left-0 z-50 transform -translate-x-full lg:translate-x-0 transition-transform bg-white h-full">
+    <!-- Mobile Close Button -->
+    <button class="lg:hidden absolute top-4 right-4 text-xl p-2 hover:bg-gray-100 rounded-full"
+            onclick="toggleMobileSidebar()">
+      <i class="fa-solid fa-times"></i>
+    </button>
+    
+    <div class="p-6 border-b">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-violet-600 rounded-2xl flex items-center justify-center text-white text-xl">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800">Admin Panel</h2>
+      </div>
+    </div>
+
+    <nav class="flex-1 px-3 py-6 space-y-1">
+      <a onclick="showPanel('dashboard')" 
+         id="nav-dashboard"
+         class="nav-item flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-violet-50 rounded-2xl font-medium active">
+        <i class="fa-solid fa-house w-5"></i>
+        <span>Dashboard</span>
+      </a>
+      <a onclick="showPanel('products')" 
+         id="nav-products"
+         class="nav-item flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-violet-50 rounded-2xl font-medium">
+        <i class="fa-solid fa-box w-5"></i>
+        <span>Products</span>
+      </a>
+      <a onclick="showPanel('orders')" 
+         id="nav-orders"
+         class="nav-item flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-violet-50 rounded-2xl font-medium">
+        <i class="fa-solid fa-shopping-bag w-5"></i>
+        <span>Orders</span>
+      </a>
+      <a onclick="showPanel('users')" 
+         id="nav-users"
+         class="nav-item flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-violet-50 rounded-2xl font-medium">
+        <i class="fa-solid fa-users w-5"></i>
+        <span>Users</span>
+      </a>
+      <a onclick="showPanel('settings')" 
+         id="nav-settings"
+         class="nav-item flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-violet-50 rounded-2xl font-medium">
+        <i class="fa-solid fa-gear w-5"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="p-6 border-t mt-auto">
+      <button onclick="logout()" 
+              class="flex items-center justify-center w-full gap-3 bg-red-50 hover:bg-red-100 text-red-600 font-medium py-4 rounded-2xl transition-colors">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </button>
+      <p class="text-center text-xs text-gray-400 mt-6">© HANDTIME Admin • 2026</p>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="flex-1 p-6 lg:p-10 overflow-auto">
+
+    <!-- DASHBOARD PANEL -->
+    <div id="dashboard-panel" class="panel">
+      <div class="flex justify-between items-end mb-8">
+        <div>
+          <h1 class="text-4xl font-bold text-gray-800">Welcome back, Admin 👋</h1>
+          <p class="text-gray-500 mt-1">Here's what's happening with HANDTIME today</p>
+        </div>
+        <div class="text-right">
+          <span class="text-sm text-gray-500">Monday, April 20 2026</span>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 cursor-pointer">
+        <div class="stat-card bg-white rounded-3xl p-6 shadow-sm">
+          <div class="flex justify-between">
+            <div class="cursor-pointer">
+              <p class="text-sm font-medium text-gray-500">Total Products</p>
+              <p id="stat-products" class="text-5xl font-bold text-violet-700 mt-2">30</p>
+            </div>
+            <i class="fa-solid fa-box text-4xl text-violet-200"></i>
+          </div>
+        </div>
+        <div class="stat-card bg-white rounded-3xl p-6 shadow-sm cursor-pointer">
+          <div class="flex justify-between">
+            <div>
+              <p class="text-sm font-medium text-gray-500">Total Orders</p>
+              <p id="stat-orders" class="text-5xl font-bold text-emerald-600 mt-2">142</p>
+            </div>
+            <i class="fa-solid fa-bag-shopping text-4xl text-emerald-200"></i>
+          </div>
+        </div>
+        <div class="stat-card bg-white rounded-3xl p-6 shadow-sm cursor-pointer">
+          <div class="flex justify-between">
+            <div>
+              <p class="text-sm font-medium text-gray-500">Revenue This Month</p>
+              <p id="stat-revenue" class="text-5xl font-bold text-amber-600 mt-2">$18,420</p>
+            </div>
+            <i class="fa-solid fa-dollar-sign text-4xl text-amber-200"></i>
+          </div>
+        </div>
+        <div class="stat-card bg-white rounded-3xl p-6 shadow-sm cursor-pointer">
+          <div class="flex justify-between">
+            <div>
+              <p class="text-sm font-medium text-gray-500">Active Users</p>
+              <p id="stat-users" class="text-5xl font-bold text-blue-600 mt-2">1,284</p>
+            </div>
+            <i class="fa-solid fa-users text-4xl text-blue-200"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-white rounded-3xl p-8 shadow-sm">
+        <h3 class="font-semibold text-lg mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-chart-simple"></i> Quick Overview
+        </h3>
+        <p class="text-gray-600">Your store is performing great! 8 new products were added this week.</p>
+      </div>
+    </div>
+
+    <!-- PRODUCTS PANEL (Full CRUD) -->
+    <div id="products-panel" class="panel hidden">
+      <div class="flex flex-col gap-4 mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">Manage Products</h1>
+        
+        <div class="flex flex-wrap gap-3">
+          <button onclick="clearAllProducts()" 
+                  class="bg-red-500 hover:bg-red-600 text-white px-5 py-3 rounded-2xl flex items-center gap-2 font-semibold transition text-sm">
+            <i class="fa-solid fa-trash-can"></i>
+            Clear All
+          </button>
+          
+          <button onclick="showAddProductModal()" 
+                  class="bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-semibold transition">
+            <i class="fa-solid fa-plus"></i>
+            Add Product
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl shadow-sm overflow-hidden">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b">
+              <th class="text-left pl-8 py-5">IMAGE</th>
+              <th class="text-left py-5">NAME</th>
+              <th class="text-left py-5">CATEGORY</th>
+              <th class="text-left py-5">PRICE</th>
+              <th class="text-center py-5">ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody id="products-tbody" class="text-sm divide-y"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ORDERS PANEL (Read only + status update) -->
+    <div id="orders-panel" class="panel hidden">
+      <h1 class="text-3xl font-bold text-gray-800 mb-8">Orders</h1>
+      <div class="bg-white rounded-3xl shadow-sm overflow-hidden">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b">
+              <th class="text-left pl-8 py-5">ORDER ID</th>
+              <th class="text-left py-5">CUSTOMER</th>
+              <th class="text-left py-5">PRODUCT</th>
+              <th class="text-left py-5">AMOUNT</th>
+              <th class="text-center py-5">STATUS</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody" class="text-sm divide-y"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- USERS PANEL -->
+    <div id="users-panel" class="panel hidden">
+      <h1 class="text-3xl font-bold text-gray-800 mb-8">Users</h1>
+      <div class="bg-white rounded-3xl p-8 text-center text-gray-500">
+        <i class="fa-solid fa-users text-6xl mb-4 opacity-30"></i>
+        <p class="text-xl">User management coming soon.<br>Currently 1,284 registered customers.</p>
+      </div>
+    </div>
+
+    <!-- SETTINGS PANEL -->
+    <div id="settings-panel" class="panel hidden">
+      <h1 class="text-3xl font-bold text-gray-800 mb-8">Settings</h1>
+      <div class="max-w-lg bg-white rounded-3xl p-8">
+        <p class="text-gray-600">This is a demo dashboard. In a real backend you would configure shipping, taxes, API keys, etc.</p>
+        <button onclick="alert('Demo: Settings saved!')" 
+                class="mt-8 w-full bg-violet-600 text-white py-4 rounded-3xl font-semibold">
+          Save Settings
+        </button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- PRODUCT MODAL (Create + Edit + Upload) -->
+<div onclick="if(event.target.id === 'product-modal') hideModal()" 
+     id="product-modal" 
+     class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-9999 items-center justify-center">
+  
+  <div onclick="event.stopImmediatePropagation()" 
+       class="bg-white w-full max-w-lg mx-4 rounded-3xl p-8 shadow-2xl">
+    
+    <h2 id="modal-title" class="text-2xl font-bold mb-6">Add New Product</h2>
+    
+    <form id="product-form" onsubmit="handleProductForm(event)">
+      <div class="space-y-6">
+        
+        <!-- Image Upload + Preview -->
+        <div>
+          <label class="block text-sm font-medium text-gray-600 mb-2">Product Image</label>
+          <div class="flex items-center gap-4">
+            <img id="image-preview" src="/src/Components/images/w1.png" 
+                 class="w-24 h-24 object-cover rounded-2xl border border-gray-200">
+            <div>
+              <input type="file" id="image-upload" accept="image/*" 
+                     class="hidden" onchange="previewUploadedImage(event)">
+              <button type="button" onclick="document.getElementById('image-upload').click()"
+                      class="flex items-center gap-2 text-violet-600 hover:text-violet-700 border border-violet-200 hover:border-violet-300 px-5 py-2 rounded-2xl">
+                <i class="fa-solid fa-cloud-upload"></i>
+                <span>Upload Image</span>
+              </button>
+              <p id="file-name" class="text-xs text-gray-400 mt-1">No file chosen</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-600 mb-1">Product Name</label>
+            <input id="form-name" type="text" required
+                   class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-violet-400 outline-none">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600 mb-1">Category</label>
+            <select id="form-category" required
+                    class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-violet-400 outline-none">
+              <option value="Men">Men</option>
+              <option value="Female">Female</option>
+              <option value="Digital">Digital</option>
+              <option value="Smart">Smart</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-600 mb-1">Price ($)</label>
+          <input id="form-price" type="number" step="1" required
+                 class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-violet-400 outline-none">
+        </div>
+
+        <div class="flex justify-end gap-3 pt-4 border-t">
+          <button type="button" onclick="hideModal()" 
+                  class="px-8 py-3 text-gray-600 hover:bg-gray-100 rounded-2xl">Cancel</button>
+          <button type="submit" 
+                  class="px-8 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-2xl font-semibold">Save Product</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
