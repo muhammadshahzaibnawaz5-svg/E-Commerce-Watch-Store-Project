@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  base: './',
   build: {
     rollupOptions: {
       input: {
@@ -13,7 +14,7 @@ export default defineConfig({
         products: resolve(__dirname, 'src/Pages/Products.html'),
         contact:  resolve(__dirname, 'src/Pages/Contact-Us.html'),
         signin:   resolve(__dirname, 'src/Pages/Sign-in.html'),
-        admin:    resolve(__dirname, 'src/Pages/Admin/index.html'),
+        admin:    resolve(__dirname, 'src/Pages/Admin.html'),
       },
     },
   },

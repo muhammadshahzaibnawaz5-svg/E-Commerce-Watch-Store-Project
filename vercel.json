@@ -3,8 +3,18 @@
   "outputDirectory": "dist",
   "framework": null,
   "rewrites": [
-    { "source": "/src/Pages/(.*)", "destination": "/src/Pages/$1" },
-    { "source": "/(.*)\\.html", "destination": "/$1.html" },
-    { "source": "/", "destination": "/index.html" }
+    { "source": "/src/Pages/Products.html", "destination": "/src/Pages/Products.html" },
+    { "source": "/src/Pages/Contact-Us.html", "destination": "/src/Pages/Contact-Us.html" },
+    { "source": "/src/Pages/Sign-in.html", "destination": "/src/Pages/Sign-in.html" },
+    { "source": "/src/Pages/Admin.html", "destination": "/src/Pages/Admin.html" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    }
   ]
 }
