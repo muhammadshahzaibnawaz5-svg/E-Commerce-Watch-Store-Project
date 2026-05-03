@@ -318,7 +318,7 @@ function showSaveToast() {
   if (!toast) {
     toast = document.createElement('div')
     toast.id = 'save-toast'
-    toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:99999;background:#7c3aed;color:#fff;padding:12px 20px;border-radius:14px;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,0.2);display:flex;align-items:center;gap:8px;transition:opacity 0.4s ease;'
+    toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:99999;background:#7c3aed;color:#fff;padding:12px 20px;border-radius:14px;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,0.15);transition:opacity 0.3s ease;'
     document.body.appendChild(toast)
   }
   toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> Saved!'
@@ -409,11 +409,9 @@ function showPanel(panel) {
   const activeNav = document.getElementById('nav-' + panel)
   if (activeNav) activeNav.classList.add('active', 'bg-violet-50', 'text-violet-700')
 
+  // Close mobile sidebar after selecting a panel
   if (window.innerWidth < 1024) {
-    const sidebar = document.getElementById('adminSidebar')
-    const overlay = document.getElementById('mobileSidebarOverlay')
-    if (sidebar) sidebar.classList.add('-translate-x-full')
-    if (overlay) overlay.classList.add('hidden')
+    closeMobileSidebar()
   }
 
   if (panel === 'products') renderProducts(products)
@@ -583,6 +581,38 @@ function togglePasswordVisibility() {
   }
 }
 
+// --- MOBILE SIDEBAR FUNCTIONS ---
+function openMobileSidebar() {
+  const sidebar = document.getElementById('adminSidebar')
+  const overlay = document.getElementById('mobileSidebarOverlay')
+  
+  if (sidebar) sidebar.classList.remove('-translate-x-full')
+  if (overlay) overlay.classList.remove('hidden')
+}
+
+function closeMobileSidebar() {
+  const sidebar = document.getElementById('adminSidebar')
+  const overlay = document.getElementById('mobileSidebarOverlay')
+  
+  if (sidebar) sidebar.classList.add('-translate-x-full')
+  if (overlay) overlay.classList.add('hidden')
+}
+
+function toggleMobileSidebar() {
+  if (window.innerWidth >= 1024) return
+  
+  const sidebar = document.getElementById('adminSidebar')
+  if (!sidebar) return
+  
+  const isHidden = sidebar.classList.contains('-translate-x-full')
+  
+  if (isHidden) {
+    openMobileSidebar()
+  } else {
+    closeMobileSidebar()
+  }
+}
+
 // --- MOBILE MENU ---
 function initMobileMenu() {
   const menuBtn = document.getElementById('menuBtn')
@@ -607,6 +637,14 @@ document.addEventListener('click', function (e) {
   const dd = document.getElementById('user-dropdown')
   if (dd && badge && !badge.contains(e.target)) {
     dd.classList.add('hidden')
+  }
+})
+
+// --- CLOSE SIDEBAR ON OVERLAY CLICK ---
+document.addEventListener('DOMContentLoaded', function () {
+  const overlay = document.getElementById('mobileSidebarOverlay')
+  if (overlay) {
+    overlay.addEventListener('click', closeMobileSidebar)
   }
 })
 
@@ -642,12 +680,6 @@ window.filterProducts = filterProducts
 window.previewUploadedImage = previewUploadedImage
 window.handleProductForm = handleProductForm
 window.clearAllProducts = clearAllProducts
-window.toggleMobileSidebar = function () {
-  if (window.innerWidth >= 1024) return
-  const sidebar = document.getElementById('adminSidebar')
-  const overlay = document.getElementById('mobileSidebarOverlay')
-  if (!sidebar) return
-  const isHidden = sidebar.classList.contains('-translate-x-full')
-  sidebar.classList.toggle('-translate-x-full')
-  if (overlay) overlay.classList.toggle('hidden', !isHidden)
-}
+window.toggleMobileSidebar = toggleMobileSidebar
+window.openMobileSidebar = openMobileSidebar
+window.closeMobileSidebar = closeMobileSidebar
